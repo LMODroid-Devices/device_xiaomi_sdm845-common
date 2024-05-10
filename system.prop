@@ -28,6 +28,7 @@ ro.vendor.display.sensortype=2
 ro.fastbootd.available=true
 
 # Graphics
+debug.sf.auto_latch_unsignaled=0
 debug.sf.early_app_phase_offset_ns=500000
 debug.sf.early_gl_app_phase_offset_ns=15000000
 debug.sf.early_gl_phase_offset_ns=3000000
@@ -46,7 +47,6 @@ sdm.debug.disable_inline_rotator_secure=1
 persist.vendor.ims.disableUserAgent=0
 
 # Media
-debug.stagefright.omx_default_rank.sw-audio=1
 debug.stagefright.omx_default_rank=0
 media.settings.xml=/vendor/etc/media_profiles_vendor.xml
 
