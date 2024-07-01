@@ -7,7 +7,6 @@
 BOARD_VENDOR := xiaomi
 
 BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
-BUILD_BROKEN_INCORRECT_PARTITION_IMAGES := true
 
 COMMON_PATH := device/xiaomi/sdm845-common
 
@@ -60,6 +59,11 @@ MAX_EGL_CACHE_KEY_SIZE := 12*1024
 MAX_EGL_CACHE_SIZE := 2048*1024
 
 # HIDL
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
+    hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml \
+    hardware/qcom-caf/common/vendor_framework_compatibility_matrix_legacy.xml \
+    hardware/xiaomi/vintf/xiaomi_framework_compatibility_matrix.xml \
+    vendor/lmodroid/config/device_framework_matrix.xml
 DEVICE_MANIFEST_FILE := $(COMMON_PATH)/manifest.xml
 DEVICE_MATRIX_FILE := hardware/qcom-caf/common/compatibility_matrix.xml
 

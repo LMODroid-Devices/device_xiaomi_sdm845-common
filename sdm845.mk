@@ -11,6 +11,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Setup dalvik vm configs
 $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 
+# Add common definitions for Qualcomm
+$(call inherit-product, hardware/qcom-caf/common/common.mk)
+
 PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := true
 
 # Overlays
@@ -61,10 +64,6 @@ PRODUCT_COPY_FILES += \
 # Properties
 PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
 
-# AID/fs configs
-PRODUCT_PACKAGES += \
-    fs_config_files
-
 # Audio
 PRODUCT_PACKAGES += \
     android.hardware.audio@6.0-impl:32 \
@@ -73,6 +72,7 @@ PRODUCT_PACKAGES += \
     android.hardware.soundtrigger@2.2-impl:32 \
     audio.r_submix.default \
     audio.usb.default \
+    libaudioroute.vendor \
     libqcompostprocbundle \
     libqcomvisualizer \
     libqcomvoiceprocessing \
@@ -126,6 +126,10 @@ PRODUCT_PACKAGES += \
     init.recovery.qcom.rc \
     ueventd.qcom.rc
 
+# Configstore
+PRODUCT_PACKAGES += \
+    disable_configstore
+
 # Context Hub
 PRODUCT_PACKAGES += \
     android.hardware.contexthub@1.0-impl.generic \
@@ -168,7 +172,8 @@ PRODUCT_PACKAGES += \
 
 # Gatekeeper
 PRODUCT_PACKAGES += \
-    android.hardware.gatekeeper@1.0.vendor
+    android.hardware.gatekeeper@1.0.vendor \
+    libion.vendor
 
 # GNSS
 PRODUCT_PACKAGES += \
@@ -189,6 +194,7 @@ PRODUCT_PACKAGES += \
     android.hidl.base@1.0 \
     android.hidl.base@1.0.vendor \
     android.hidl.memory@1.0.vendor \
+    libhidlmemory.vendor \
     libhidltransport \
     libhidltransport.vendor \
     libhwbinder \
@@ -217,7 +223,7 @@ PRODUCT_PACKAGES += \
 
 # Lights
 PRODUCT_PACKAGES += \
-    android.hardware.light@2.0-service.xiaomi_sdm845
+    android.hardware.light-service.xiaomi
 
 # Lineage Health
 PRODUCT_PACKAGES += \
@@ -301,7 +307,8 @@ PRODUCT_PACKAGES += \
     android.hardware.radio.config@1.2.vendor \
     android.hardware.radio.deprecated@1.0.vendor \
     libjson \
-    librmnetctl
+    librmnetctl \
+    libsqlite.vendor:64
 
 # Recovery
 PRODUCT_PACKAGES += \
@@ -355,8 +362,7 @@ PRODUCT_PACKAGES += \
 
 # Vibrator
 PRODUCT_PACKAGES += \
-    android.hardware.vibrator@1.0-impl:64 \
-    android.hardware.vibrator@1.0-service
+    vendor.qti.hardware.vibrator.service
 
 # VNDK
 PRODUCT_COPY_FILES += \
@@ -384,6 +390,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.media.audio.common.types-V2-cpp \
     libnl \
+    libpng.vendor \
+    libprocessgroup.vendor \
     libwfdaac_vendor
 
 PRODUCT_BOOT_JARS += \
